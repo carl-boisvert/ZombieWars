@@ -1,10 +1,10 @@
-from Tkinter import *
+from tkinter import *
 
 class Vue():
     def __init__(self,parent):
         self.root=Tk()
         self.parent = parent
-        self.root.title("Zelda Like")
+        self.root.title("Zombie Wars")
         self.positionY = 0
         self.positionX = 400
         self.positionXGame = 800
@@ -65,15 +65,15 @@ class Vue():
     def dessinerCaisse(self, tabCaisse):
         self.canevas.delete("Caisse")
         for i in tabCaisse.keys():
-            caisse = tabCaisse.get(i)
-            print("CAISSE: ", caisse)
-            if caisse.grandeur == "Petite":
-                print("POSITION: ", caisse.position)
-                self.canevas.create_rectangle(caisse.position[0]+5,caisse.position[1]+5,caisse.position[0]-5,caisse.position[1]-5, fill="Blue", tags=("Caisse",caisse.id))
-            elif caisse.grandeur == "Moyenne":
-                self.canevas.create_rectangle(caisse.position[0]+10,caisse.position[1]+10,caisse.position[0]-10,caisse.position[1]-10, fill="Blue", tags=("Caisse",caisse.id))
-            else:
-                self.canevas.create_rectangle(caisse.position[0]+15,caisse.position[1]+15,caisse.position[0]-15,caisse.position[1]-15, fill="Blue", tags=("Caisse",caisse.id))
+            position = tabCaisse.get(i)
+            for caisse in position:
+                if caisse.grandeur == "Petite":
+                    print("POSITION: ", caisse.position)
+                    self.canevas.create_rectangle(caisse.position[0]+5,caisse.position[1]+5,caisse.position[0]-5,caisse.position[1]-5, fill="Blue", tags=("Caisse",caisse.id))
+                elif caisse.grandeur == "Moyenne":
+                    self.canevas.create_rectangle(caisse.position[0]+10,caisse.position[1]+10,caisse.position[0]-10,caisse.position[1]-10, fill="Blue", tags=("Caisse",caisse.id))
+                else:
+                    self.canevas.create_rectangle(caisse.position[0]+15,caisse.position[1]+15,caisse.position[0]-15,caisse.position[1]-15, fill="Blue", tags=("Caisse",caisse.id))
                     
     def commencerPartie(self):
         self.canevas.delete("titre")

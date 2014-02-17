@@ -37,6 +37,9 @@ class Survivor():
             self.position = self.cibleDeplacement
             self.cibleDeplacement = None
             if self.caisseCible != None:
+                print(self.position)
+                print(self.parent.caisse)
+                print(self.caisseCible.id)
                 self.parent.caisse.pop(self.caisseCible.id)
                 self.parent.caisseAttribuer.pop(self.caisseCible.id)
                 self.attribuerCaisse()
@@ -50,7 +53,8 @@ class Survivor():
     def trouverCible(self):
         for i in self.parent.caisse.keys():
             if i not in self.parent.caisseAttribuer.keys() and self.caisseCible == None:
-                self.cibleDeplacement = self.parent.caisse[i].position
-                self.caisseCible = self.parent.caisse[i]
-                self.parent.caisseAttribuer[i] = self.parent.caisse[i]
+                if self.parent.caisse[i] != []:
+                    self.cibleDeplacement = self.parent.caisse[i][0].position
+                    self.caisseCible = self.parent.caisse[i][0]
+                    self.parent.caisseAttribuer[i] = self.parent.caisse[i][0]
         

@@ -17,20 +17,22 @@ class Livraison():
                                 }
     
     def envoyerPetiteCaisse(self):
-        nbrCaisse = random.randrange(1,3)
+        nbrCaisse = 1
         for i in range(nbrCaisse):
             memeEndroit = False
             self.nbrTotalCaisse += 1
             pos = random.randrange(1,5)
-            self.tabCaisse[self.nbrTotalCaisse] = Caisse.PetiteCaisse(self.nbrTotalCaisse)
-            self.tabCaisse.get(self.nbrTotalCaisse).position = self.positionCaisse.get(str(pos))
+            newCaisse = Caisse.PetiteCaisse(self.nbrTotalCaisse)
+            newCaisse.position = self.positionCaisse.get(str(pos))
+            self.tabCaisse[str(pos)].append(newCaisse)
             for i in self.tabCaisse.keys():
-                caisse = self.tabCaisse.get(i)
-                if caisse.position == self.positionCaisse.get(str(pos)):
-                    memeEndroit = True
+                position = self.tabCaisse.get(i)
+                for caisse in position:
+                    if caisse.position == self.positionCaisse.get(str(pos)):
+                            memeEndroit = True
             
-            if memeEndroit == True:
-                self.tabCaisse.get(self.nbrTotalCaisse).position = self.positionCaisse.get(str(pos))
-                self.tabCaisse.get(self.nbrTotalCaisse).position[0] += random.randrange(1,10)
-                self.tabCaisse.get(self.nbrTotalCaisse).position[1] += random.randrange(1,10)
+                #if memeEndroit == True:
+                    #self.tabCaisse.get(self.nbrTotalCaisse).position = self.positionCaisse.get(str(pos))
+                    #self.tabCaisse.get(self.nbrTotalCaisse).position[0] += random.randrange(1,10)
+                    #self.tabCaisse.get(self.nbrTotalCaisse).position[1] += random.randrange(1,10)
         return self.tabCaisse

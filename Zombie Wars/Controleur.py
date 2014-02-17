@@ -20,7 +20,7 @@ class Controleur():
         self.vue.dessinerZombie(self.modele.uniteEnJeu)
         self.vue.dessinerSurvivant(self.modele.survivant)
         for i in self.modele.survivant.keys():
-            self.modele.survivant.get(i).prendreDecision()
+           self.modele.survivant.get(i).prendreDecision()
         if self.frame % 1 == 0:
             self.modele.larguerCaisse()
             #self.apparitionCaisse = random.randrange(100,200)
