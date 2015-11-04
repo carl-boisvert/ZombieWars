@@ -15,6 +15,7 @@ class Survivor():
         self.position = position
         self.cibleDeplacement = None
         self.caisseCible = None
+        self.caisseDictEntry = None
         
     def prendreDecision(self):
         if self.cibleDeplacement != None:
@@ -40,7 +41,8 @@ class Survivor():
                 print(self.position)
                 print(self.parent.caisse)
                 print(self.caisseCible.id)
-                self.parent.caisse.pop(self.caisseCible.id)
+                print(self.parent.caisseAttribuer)
+                self.parent.caisse[self.caisseDictEntry].pop(0)
                 self.parent.caisseAttribuer.pop(self.caisseCible.id)
                 self.attribuerCaisse()
                 self.caisseCible = None
@@ -52,9 +54,11 @@ class Survivor():
     
     def trouverCible(self):
         for i in self.parent.caisse.keys():
-            if i not in self.parent.caisseAttribuer.keys() and self.caisseCible == None:
-                if self.parent.caisse[i] != []:
-                    self.cibleDeplacement = self.parent.caisse[i][0].position
-                    self.caisseCible = self.parent.caisse[i][0]
-                    self.parent.caisseAttribuer[i] = self.parent.caisse[i][0]
+            if len(self.parent.caisse[i]) > 0:
+                if self.parent.caisse[i][0].id not in self.parent.caisseAttribuer.keys() and self.caisseCible == None:
+                    if self.parent.caisse[i] != []:
+                        self.cibleDeplacement = self.parent.caisse[i][0].position
+                        self.caisseCible = self.parent.caisse[i][0]
+                        self.parent.caisseAttribuer[self.caisseCible.id] = self.parent.caisse[i][0]
+                        self.caisseDictEntry = i
         
